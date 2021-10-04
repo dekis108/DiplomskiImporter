@@ -1,0 +1,29 @@
+using Plots
+using DifferentialEquations
+
+function zad1(dx,x,p,t)
+
+M1, M2, k1, k2, B1, B2, B3 = p
+
+tp = rem(t,5)
+
+F = 4 * tp.*((tp.>0) .& (tp.<=1)) + 4 *((tp.>1) .& (tp.<=2)) + (-2*tp.+8) .* ((tp.>2) .& (tp.<-3)) + 2*((tp.>3) .& (tp.<=4)) + (-2*tp.+1).*((tp.>4) .& (tp.<=5))
+
+dx[1] = x[3]
+dx[2] = x[4]
+dx[3] = (1/M1) * (-2(k1+k2)*x[1]+F-B1*x[3]+k2*x[2])
+dx[4] = (1/M2) * (-(B2+B3)*x[4]-k2*x[2]+k2*x[1])
+
+end
+
+M1,M2,k1,k2,B1,B2,B3 = (4,6,25,40,10,5,10)
+parametri = (M1, M2, k1, k2, B1, B2, B3)
+x0 = [0.0,0.0,0.0,0.0]
+interval = (0.0, 10.0)
+prob = ODEProblem(zad1, x0, interval, parametri)
+sol = solve(prob)
+
+b1 = [red[3] for red in sol.u]
+b2 = [red[4] for red in sol.u]
+plot(sol.t, b1, label="v1(t)")
+plot!(sol.t, b2, label="v2(t)")

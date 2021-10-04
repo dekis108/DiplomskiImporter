@@ -1,0 +1,554 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:cims="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:j.0="http://iec.ch/TC57/2010/CIM-schema-cim15#"
+  xml:base="http://iec.ch/TC57/2010/CIM-schema-cim15" > 
+  <rdf:Description rdf:about="#ACLineSegment.r">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Positive sequence series resistance of the entire line section.</rdfs:comment>
+    <rdfs:label>r</rdfs:label>
+    <rdfs:range rdf:resource="#Resistance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Wires">
+    <cims:belongsToCategory rdf:resource="#Package_IEC61970"/>
+    <rdfs:comment>An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.</rdfs:comment>
+    <rdfs:label>Wires</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s1">
+    <rdfs:comment>Secondary phase 1.</rdfs:comment>
+    <rdfs:label>s1</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s2N">
+    <rdfs:comment>Secondary phase 2 and neutral.</rdfs:comment>
+    <rdfs:label>s2N</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal">
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+    <cims:belongsToCategory rdf:resource="#Package_Core"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>An electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</rdfs:comment>
+    <rdfs:label>Terminal</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Susceptance">
+    <cims:belongsToCategory rdf:resource="#Package_Domain"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#cimdatatype"/>
+    <rdfs:comment>Imaginary part of admittance.</rdfs:comment>
+    <rdfs:label>Susceptance</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_IEC61970">
+    <cims:belongsToCategory rdf:resource="#Package_TC57CIM"/>
+    <rdfs:comment>The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.</rdfs:comment>
+    <rdfs:label>IEC61970</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s1N">
+    <rdfs:comment>Secondary phase 1 and neutral.</rdfs:comment>
+    <rdfs:label>s1N</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.distance12">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.</rdfs:comment>
+    <rdfs:label>distance12</rdfs:label>
+    <rdfs:range rdf:resource="#Length"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Core">
+    <cims:belongsToCategory rdf:resource="#Package_IEC61970"/>
+    <rdfs:comment>Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.</rdfs:comment>
+    <rdfs:label>Core</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.A">
+    <rdfs:comment>Phase A.</rdfs:comment>
+    <rdfs:label>A</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject.name">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The name is any free human readable and possibly non unique text naming the object.</rdfs:comment>
+    <rdfs:label>name</rdfs:label>
+    <cims:dataType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#IdentifiedObject"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal.connected">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not. 
+In a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.</rdfs:comment>
+    <rdfs:label>connected</rdfs:label>
+    <cims:dataType rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Terminal"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConductingEquipment">
+    <rdfs:subClassOf rdf:resource="#Equipment"/>
+    <cims:belongsToCategory rdf:resource="#Package_IES_Projects"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>The parts of the power system that are designed to carry current or that are conductively connected through terminals.</rdfs:comment>
+    <rdfs:label>ConductingEquipment</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegmentPhase">
+    <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
+    <cims:belongsToCategory rdf:resource="#Package_Wires"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdfs:comment>Represents a single wire of an alternating current line segment.</rdfs:comment>
+    <rdfs:label>ACLineSegmentPhase</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.distance22">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Distance to the end of coupled region from the second line's terminal with squence number equal to 1.</rdfs:comment>
+    <rdfs:label>distance22</rdfs:label>
+    <rdfs:range rdf:resource="#Length"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject">
+    <cims:belongsToCategory rdf:resource="#Package_Core"/>
+    <rdfs:comment>This is a root class to provide common identification for all classes needing identification and naming attributes.</rdfs:comment>
+    <rdfs:label>IdentifiedObject</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject.mRID">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.
+Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.
+For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</rdfs:comment>
+    <rdfs:label>mRID</rdfs:label>
+    <cims:dataType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#IdentifiedObject"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegmentPhase.ACLineSegment">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>The line segment to which the phase belongs.</rdfs:comment>
+    <rdfs:label>ACLineSegment</rdfs:label>
+    <rdfs:range rdf:resource="#ACLineSegment"/>
+    <rdfs:domain rdf:resource="#ACLineSegmentPhase"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:0..1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.ABC">
+    <rdfs:comment>Phases A, B, and C.</rdfs:comment>
+    <rdfs:label>ABC</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.x0">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence series reactance of the entire line section.</rdfs:comment>
+    <rdfs:label>x0</rdfs:label>
+    <rdfs:range rdf:resource="#Reactance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.Second_Terminal">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>The starting terminal for the calculation of distances along the second branch of the mutual coupling.</rdfs:comment>
+    <rdfs:label>Second_Terminal</rdfs:label>
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:0..1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Reactance">
+    <cims:belongsToCategory rdf:resource="#Package_Domain"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#cimdatatype"/>
+    <rdfs:comment>Reactance (imaginary part of impedance), at rated frequency.</rdfs:comment>
+    <rdfs:label>Reactance</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.B">
+    <rdfs:comment>Phase B.</rdfs:comment>
+    <rdfs:label>B</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.g0ch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</rdfs:comment>
+    <rdfs:label>g0ch</rdfs:label>
+    <rdfs:range rdf:resource="#Conductance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.distance11">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.</rdfs:comment>
+    <rdfs:label>distance11</rdfs:label>
+    <rdfs:range rdf:resource="#Length"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Conductor">
+    <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
+    <cims:belongsToCategory rdf:resource="#Package_Wires"/>
+    <rdfs:comment>Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.</rdfs:comment>
+    <rdfs:label>Conductor</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.g0ch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.</rdfs:comment>
+    <rdfs:label>g0ch</rdfs:label>
+    <rdfs:range rdf:resource="#Conductance"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.r0">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence series resistance of the entire line section.</rdfs:comment>
+    <rdfs:label>r0</rdfs:label>
+    <rdfs:range rdf:resource="#Resistance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.A">
+    <rdfs:comment>Phase A.</rdfs:comment>
+    <rdfs:label>A</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.distance21">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Distance to the start of coupled region from the second line's terminal with sequence number equal to 1.</rdfs:comment>
+    <rdfs:label>distance21</rdfs:label>
+    <rdfs:range rdf:resource="#Length"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind">
+    <cims:belongsToCategory rdf:resource="#Package_Wires"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:comment>Enumeration of single phase identifiers. Allows designation of single phases for both transmission and distribution equipment, circuits and loads.</rdfs:comment>
+    <rdfs:label>SinglePhaseKind</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.s1">
+    <rdfs:comment>Secondary phase 1.</rdfs:comment>
+    <rdfs:label>s1</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s12">
+    <rdfs:comment>Secondary phase 1 and 2.</rdfs:comment>
+    <rdfs:label>s12</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_IES_Projects">
+    <cims:belongsToCategory rdf:resource="#Package_TC57CIM"/>
+    <rdfs:label>IES_Projects</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PowerSystemResource">
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+    <cims:belongsToCategory rdf:resource="#Package_Core"/>
+    <rdfs:comment>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</rdfs:comment>
+    <rdfs:label>PowerSystemResource</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s12N">
+    <rdfs:comment>Secondary phases 1, 2, and neutral.</rdfs:comment>
+    <rdfs:label>s12N</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.BC">
+    <rdfs:comment>Phases B and C.</rdfs:comment>
+    <rdfs:label>BC</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Conductance">
+    <cims:belongsToCategory rdf:resource="#Package_Domain"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#cimdatatype"/>
+    <rdfs:comment>Factor by which voltage must be multiplied to give corresponding power lost from a circuit. Real part of admittance.</rdfs:comment>
+    <rdfs:label>Conductance</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.N">
+    <rdfs:comment>Neutral.</rdfs:comment>
+    <rdfs:label>N</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.bch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.  This value represents the full charging over the full length of the line.</rdfs:comment>
+    <rdfs:label>bch</rdfs:label>
+    <rdfs:range rdf:resource="#Susceptance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.N">
+    <rdfs:comment>Neutral phase.</rdfs:comment>
+    <rdfs:label>N</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment">
+    <rdfs:subClassOf rdf:resource="#Conductor"/>
+    <cims:belongsToCategory rdf:resource="#Package_Wires"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
+For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.</rdfs:comment>
+    <rdfs:label>ACLineSegment</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.x0">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence branch-to-branch mutual impedance coupling, reactance.</rdfs:comment>
+    <rdfs:label>x0</rdfs:label>
+    <rdfs:range rdf:resource="#Reactance"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.BCN">
+    <rdfs:comment>Phases B, C, and neutral.</rdfs:comment>
+    <rdfs:label>BCN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.ABCN">
+    <rdfs:comment>Phases A, B, C, and N.</rdfs:comment>
+    <rdfs:label>ABCN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Domain">
+    <cims:belongsToCategory rdf:resource="#Package_IEC61970"/>
+    <rdfs:comment>The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt; A list of permissible constant values.
+&amp;lt;&amp;lt;Primitive&amp;gt;&amp;gt; The most basic data types used to compose all other data types.
+&amp;lt;&amp;lt;CIMDatatype&amp;gt;&amp;gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&amp;lt;&amp;lt;Compound&amp;gt;&amp;gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.</rdfs:comment>
+    <rdfs:label>Domain</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.AC">
+    <rdfs:comment>Phases A and C.</rdfs:comment>
+    <rdfs:label>AC</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.B">
+    <rdfs:comment>Phase B.</rdfs:comment>
+    <rdfs:label>B</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.C">
+    <rdfs:comment>Phase C.</rdfs:comment>
+    <rdfs:label>C</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.AB">
+    <rdfs:comment>Phases A and B.</rdfs:comment>
+    <rdfs:label>AB</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.b0ch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.</rdfs:comment>
+    <rdfs:label>b0ch</rdfs:label>
+    <rdfs:range rdf:resource="#Susceptance"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.gch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</rdfs:comment>
+    <rdfs:label>gch</rdfs:label>
+    <rdfs:range rdf:resource="#Conductance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_TC57CIM">
+    <rdfs:comment>The IEC 61968 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 14: interfaces for distribution management (WG14).
+Currently, normative parts of the model support the needs of information exchange defined in IEC 61968-3, IEC 61968-4, IEC 61968-9 and in IEC 61968-13.</rdfs:comment>
+    <rdfs:label>TC57CIM</rdfs:label>
+    <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal.ConductingEquipment">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>The conducting equipment of the terminal.  Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</rdfs:comment>
+    <rdfs:label>ConductingEquipment</rdfs:label>
+    <rdfs:range rdf:resource="#ConductingEquipment"/>
+    <rdfs:domain rdf:resource="#Terminal"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:0..1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Equipment">
+    <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
+    <cims:belongsToCategory rdf:resource="#Package_IES_Projects"/>
+    <rdfs:comment>The parts of a power system that are physical devices, electronic or mechanical.</rdfs:comment>
+    <rdfs:label>Equipment</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal.sequenceNumber">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.</rdfs:comment>
+    <rdfs:label>sequenceNumber</rdfs:label>
+    <cims:dataType rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="#Terminal"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.x">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Positive sequence series reactance of the entire line section.</rdfs:comment>
+    <rdfs:label>x</rdfs:label>
+    <rdfs:range rdf:resource="#Reactance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Terminal.phases">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Represents the normal network phasing condition.</rdfs:comment>
+    <rdfs:label>phases</rdfs:label>
+    <rdfs:range rdf:resource="#PhaseCode"/>
+    <rdfs:domain rdf:resource="#Terminal"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SinglePhaseKind.s2">
+    <rdfs:comment>Secondary phase 2.</rdfs:comment>
+    <rdfs:label>s2</rdfs:label>
+    <rdf:type rdf:resource="#SinglePhaseKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.BN">
+    <rdfs:comment>Phases B and neutral.</rdfs:comment>
+    <rdfs:label>BN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject.aliasName">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</rdfs:comment>
+    <rdfs:label>aliasName</rdfs:label>
+    <cims:dataType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#IdentifiedObject"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.s2">
+    <rdfs:comment>Secondary phase 2.</rdfs:comment>
+    <rdfs:label>s2</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.ABN">
+    <rdfs:comment>Phases A, B, and neutral.</rdfs:comment>
+    <rdfs:label>ABN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling">
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+    <cims:belongsToCategory rdf:resource="#Package_Wires"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdfs:comment>This class represents the zero sequence line mutual coupling.</rdfs:comment>
+    <rdfs:label>MutualCoupling</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.ACN">
+    <rdfs:comment>Phases A, C and neutral.</rdfs:comment>
+    <rdfs:label>ACN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode">
+    <cims:belongsToCategory rdf:resource="#Package_Core"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:comment>Enumeration of phase identifiers. Allows designation of phases for both transmission and distribution equipment, circuits and loads.
+Residential and small commercial loads are often served from single-phase, or split-phase, secondary circuits. For example of s12N, phases 1 and 2 refer to hot wires that are 180 degrees out of phase, while N refers to the neutral wire. Through single-phase transformer connections, these secondary circuits may be served from one or two of the primary phases A, B, and C. For three-phase loads, use the A, B, C phase codes instead of s12N.</rdfs:comment>
+    <rdfs:label>PhaseCode</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.b0ch">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.</rdfs:comment>
+    <rdfs:label>b0ch</rdfs:label>
+    <rdfs:range rdf:resource="#Susceptance"/>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegmentPhase.phase">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The phase connection of the wire at both ends.</rdfs:comment>
+    <rdfs:label>phase</rdfs:label>
+    <rdfs:range rdf:resource="#SinglePhaseKind"/>
+    <rdfs:domain rdf:resource="#ACLineSegmentPhase"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.AN">
+    <rdfs:comment>Phases A and neutral.</rdfs:comment>
+    <rdfs:label>AN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Resistance">
+    <cims:belongsToCategory rdf:resource="#Package_Domain"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#cimdatatype"/>
+    <rdfs:comment>Resistance (real part of impedance).</rdfs:comment>
+    <rdfs:label>Resistance</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.r0">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Zero sequence branch-to-branch mutual impedance coupling, resistance.</rdfs:comment>
+    <rdfs:label>r0</rdfs:label>
+    <rdfs:range rdf:resource="#Resistance"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MutualCoupling.First_Terminal">
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#byreference"/>
+    <rdfs:comment>The starting terminal for the calculation of distances along the first branch of the mutual coupling.  Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.</rdfs:comment>
+    <rdfs:label>First_Terminal</rdfs:label>
+    <rdfs:range rdf:resource="#Terminal"/>
+    <rdfs:domain rdf:resource="#MutualCoupling"/>
+    <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:0..1"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.C">
+    <rdfs:comment>Phase C.</rdfs:comment>
+    <rdfs:label>C</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode.CN">
+    <rdfs:comment>Phases C and neutral.</rdfs:comment>
+    <rdfs:label>CN</rdfs:label>
+    <rdf:type rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Length">
+    <cims:belongsToCategory rdf:resource="#Package_Domain"/>
+    <cims:stereotype rdf:resource="http://langdale.com.au/2005/UML#cimdatatype"/>
+    <rdfs:comment>Unit of length. Never negative.</rdfs:comment>
+    <rdfs:label>Length</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+</rdf:RDF>
