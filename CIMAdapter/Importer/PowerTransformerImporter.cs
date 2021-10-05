@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using CIM.Model;
 using FTN.Common;
+using FTN.ESI.SIMES.CIM.CIMAdapter.DBHelper;
 using FTN.ESI.SIMES.CIM.CIMAdapter.Manager;
+
 
 namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 {
-	/// <summary>
-	/// PowerTransformerImporter
-	/// </summary>
-	public class PowerTransformerImporter
+    /// <summary>
+    /// PowerTransformerImporter
+    /// </summary>
+    public class PowerTransformerImporter
 	{
 		/// <summary> Singleton </summary>
 		private static PowerTransformerImporter ptImporter = null;
@@ -85,10 +87,10 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			return report;
 		}
 
-		/// <summary>
-		/// Method performs conversion of network elements from CIM based concrete model into DMS model.
-		/// </summary>
-		private void ConvertModelAndPopulateDelta()
+        /// <summary>
+        /// Method performs conversion of network elements from CIM based concrete model into DMS model.
+        /// </summary>
+        private void ConvertModelAndPopulateDelta()
 		{
 			LogManager.Log("Loading elements and creating delta...", LogLevel.Info);
 
@@ -100,10 +102,13 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			ImportTransformerWindings();
 			ImportWindingTests();
 			*/
+
+			//TODO: promeniti ove importe da na deltu dodaju korektnu operaciju(update, delete)
 			ImportACLineSegment();
 			ImportACLineSegmentPhase();
 			ImportTerminal();
 			ImportMutualCoupling();
+			
 
 
 			LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
@@ -137,8 +142,6 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 		private ResourceDescription CreateACLineSegmentResourceDescription(FTN.ACLineSegment cim)
 		{
-			//throw new NotImplementedException();
-
 			ResourceDescription rd = null;
 			if (cim != null)
 			{

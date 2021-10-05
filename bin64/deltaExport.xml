@@ -1,25 +1,9 @@
 ﻿<delta id="0">
   <operations>
     <operation type="insert">
-      <ResourceDescriptions count="17">
+      <ResourceDescriptions count="4">
         <ResourceDescription>
           <id gid="0x00000003ffffffff" type="ACLINESEGMENT" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="AC0" />
-            <Property id="IDOBJ_NAME" value="ACLine" />
-            <Property id="IDOBJ_ALIASNAME" value="ACLine1" />
-            <Property id="ACLINESEGMENT_B0CH" value="0.1" />
-            <Property id="ACLINESEGMENT_G0CH" value="0.3" />
-            <Property id="ACLINESEGMENT_R0" value="0.6" />
-            <Property id="ACLINESEGMENT_X0" value="0.8" />
-            <Property id="ACLINESEGMENT_X" value="0.7" />
-            <Property id="ACLINESEGMENT_R" value="0.5" />
-            <Property id="ACLINESEGMENT_GCH" value="0.4" />
-            <Property id="ACLINESEGMENT_BCH" value="0.2" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000003fffffffe" type="ACLINESEGMENT" />
           <Properties>
             <Property id="IDOBJ_MRID" value="AC1" />
             <Property id="IDOBJ_NAME" value="ACLine" />
@@ -35,45 +19,13 @@
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
-          <id gid="0x00000003fffffffd" type="ACLINESEGMENT" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="AC2" />
-            <Property id="IDOBJ_NAME" value="AC2" />
-            <Property id="IDOBJ_ALIASNAME" value="AC2" />
-            <Property id="ACLINESEGMENT_B0CH" value="0.11" />
-            <Property id="ACLINESEGMENT_G0CH" value="0.11" />
-            <Property id="ACLINESEGMENT_R0" value="0.11" />
-            <Property id="ACLINESEGMENT_X0" value="0.11" />
-            <Property id="ACLINESEGMENT_X" value="0.11" />
-            <Property id="ACLINESEGMENT_R" value="0.11" />
-            <Property id="ACLINESEGMENT_GCH" value="0.11" />
-            <Property id="ACLINESEGMENT_BCH" value="0.11" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000003fffffffc" type="ACLINESEGMENT" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="AC3" />
-            <Property id="IDOBJ_NAME" value="AC3" />
-            <Property id="IDOBJ_ALIASNAME" value="AC3" />
-            <Property id="ACLINESEGMENT_B0CH" value="0.31" />
-            <Property id="ACLINESEGMENT_G0CH" value="0.31" />
-            <Property id="ACLINESEGMENT_R0" value="0.31" />
-            <Property id="ACLINESEGMENT_X0" value="0.31" />
-            <Property id="ACLINESEGMENT_X" value="0.31" />
-            <Property id="ACLINESEGMENT_R" value="0.31" />
-            <Property id="ACLINESEGMENT_GCH" value="0.31" />
-            <Property id="ACLINESEGMENT_BCH" value="0.31" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
           <id gid="0x00000002ffffffff" type="ACLINESEGMENTPHASE" />
           <Properties>
             <Property id="IDOBJ_MRID" value="ACSPhase1" />
             <Property id="IDOBJ_NAME" value="ACSPhase1" />
             <Property id="IDOBJ_ALIASNAME" value="ACSPhase1" />
             <Property id="ACLINESEGMENTPHASE_PHASE" value="A" />
-            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003fffffffe" />
+            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003ffffffff" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
@@ -83,53 +35,11 @@
             <Property id="IDOBJ_NAME" value="ACSPhase2" />
             <Property id="IDOBJ_ALIASNAME" value="ACSPhase2" />
             <Property id="ACLINESEGMENTPHASE_PHASE" value="B" />
-            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003fffffffe" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000002fffffffd" type="ACLINESEGMENTPHASE" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="ACSPhase3" />
-            <Property id="IDOBJ_NAME" value="ACSPhase3" />
-            <Property id="IDOBJ_ALIASNAME" value="ACSPhase3" />
-            <Property id="ACLINESEGMENTPHASE_PHASE" value="C" />
-            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000002fffffffc" type="ACLINESEGMENTPHASE" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="ACSPhase4" />
-            <Property id="IDOBJ_NAME" value="ACSPhase4" />
-            <Property id="IDOBJ_ALIASNAME" value="ACSPhase4" />
-            <Property id="ACLINESEGMENTPHASE_PHASE" value="N" />
-            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000002fffffffb" type="ACLINESEGMENTPHASE" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="ACSPhase5" />
-            <Property id="IDOBJ_NAME" value="ACSPhase5" />
-            <Property id="IDOBJ_ALIASNAME" value="ACSPhase5" />
-            <Property id="ACLINESEGMENTPHASE_PHASE" value="s1" />
-            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003fffffffd" />
+            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003ffffffff" />
           </Properties>
         </ResourceDescription>
         <ResourceDescription>
           <id gid="0x00000001ffffffff" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T0" />
-            <Property id="IDOBJ_NAME" value="T1" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal1" />
-            <Property id="TERMINAL_CONNECTED" value="1" />
-            <Property id="TERMINAL_PHASE" value="C" />
-            <Property id="TERMINAL_SQCNUM" value="13" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003ffffffff" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000001fffffffe" type="TERMINAL" />
           <Properties>
             <Property id="IDOBJ_MRID" value="T1" />
             <Property id="IDOBJ_NAME" value="T1" />
@@ -137,91 +47,7 @@
             <Property id="TERMINAL_CONNECTED" value="1" />
             <Property id="TERMINAL_PHASE" value="C" />
             <Property id="TERMINAL_SQCNUM" value="13" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003fffffffe" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000001fffffffd" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T2" />
-            <Property id="IDOBJ_NAME" value="T2" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal2" />
-            <Property id="TERMINAL_CONNECTED" value="1" />
-            <Property id="TERMINAL_PHASE" value="Unknown" />
-            <Property id="TERMINAL_SQCNUM" value="14" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003fffffffe" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000001fffffffc" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T3" />
-            <Property id="IDOBJ_NAME" value="T3" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal3" />
-            <Property id="TERMINAL_CONNECTED" value="0" />
-            <Property id="TERMINAL_PHASE" value="ABC" />
-            <Property id="TERMINAL_SQCNUM" value="15" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000001fffffffb" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T4" />
-            <Property id="IDOBJ_NAME" value="T4" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal4" />
-            <Property id="TERMINAL_CONNECTED" value="0" />
-            <Property id="TERMINAL_PHASE" value="AB" />
-            <Property id="TERMINAL_SQCNUM" value="16" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000001fffffffa" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T5" />
-            <Property id="IDOBJ_NAME" value="T5" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal5" />
-            <Property id="TERMINAL_CONNECTED" value="1" />
-            <Property id="TERMINAL_PHASE" value="N" />
-            <Property id="TERMINAL_SQCNUM" value="17" />
-            <Property id="TERMINAL_CONDQEQ" value="0x00000003fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000004ffffffff" type="MUTUALCOUPLING" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="MC1" />
-            <Property id="IDOBJ_NAME" value="MC1" />
-            <Property id="IDOBJ_ALIASNAME" value="MutualCoupling1" />
-            <Property id="MUTUALCOUPLING_B0CH" value="0.3" />
-            <Property id="MUTUALCOUPLING_G0CH" value="0.3" />
-            <Property id="MUTUALCOUPLING_R0" value="0.3" />
-            <Property id="MUTUALCOUPLING_X0" value="0.3" />
-            <Property id="MUTUALCOUPLING_D11" value="0.3" />
-            <Property id="MUTUALCOUPLING_D12" value="0.3" />
-            <Property id="MUTUALCOUPLING_D21" value="0.3" />
-            <Property id="MUTUALCOUPLING_D22" value="0.3" />
-            <Property id="MUTUALCOUPLING_FIRSTTERMINAL" value="0x00000001fffffffe" />
-            <Property id="MUTUALCOUPLING_SECONDTERMINAL" value="0x00000001fffffffd" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x00000004fffffffe" type="MUTUALCOUPLING" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="MC2" />
-            <Property id="IDOBJ_NAME" value="MC2" />
-            <Property id="IDOBJ_ALIASNAME" value="MutualCoupling2" />
-            <Property id="MUTUALCOUPLING_B0CH" value="0.4" />
-            <Property id="MUTUALCOUPLING_G0CH" value="0.4" />
-            <Property id="MUTUALCOUPLING_R0" value="0.4" />
-            <Property id="MUTUALCOUPLING_X0" value="0.4" />
-            <Property id="MUTUALCOUPLING_D11" value="0.4" />
-            <Property id="MUTUALCOUPLING_D12" value="0.4" />
-            <Property id="MUTUALCOUPLING_D21" value="0.4" />
-            <Property id="MUTUALCOUPLING_D22" value="0.4" />
-            <Property id="MUTUALCOUPLING_FIRSTTERMINAL" value="0x00000001fffffffe" />
-            <Property id="MUTUALCOUPLING_SECONDTERMINAL" value="0x00000001fffffffc" />
+            <Property id="TERMINAL_CONDQEQ" value="0x00000003ffffffff" />
           </Properties>
         </ResourceDescription>
       </ResourceDescriptions>

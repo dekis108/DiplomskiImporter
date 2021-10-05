@@ -174,7 +174,6 @@ namespace CIM.ModelCompare
 					}
 					foreach(CIMEntityDifference difference in modified)
 					{
-						//// TODO - print samo razlike
 						text.Clear();
 						foreach(string attName in difference.Attributes.Keys)
 						{
@@ -206,7 +205,6 @@ namespace CIM.ModelCompare
 					string[] splitter = new string[] { "\r\n" };
 					foreach(CIMEntity cimEntity in removed)
 					{
-						//// TODO - print only rdfid reverseDiffBuilder.AppendLine(cimEntity.Source); 
 						////<cim:Terminal rdf:ID="ID_TERMINALA"></cim:Terminal> za svaki...
 						string[] sourceLines = cimEntity.Source.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                         streamWriter.WriteLine("\r\n" + sourceLines[0] + (sourceLines.Length == 1 ? string.Empty : sourceLines[sourceLines.Length - 1]));
@@ -320,7 +318,7 @@ namespace CIM.ModelCompare
 					{
 						CIMEntityDifference diff = new CIMEntityDifference();
 						diff.RdfId = oldVersion.ID;
-						//// TODO uporediti atribute u oba objekta i spakovati ih u CIMEntityDifference instancu
+						//// todo uporediti atribute u oba objekta i spakovati ih u CIMEntityDifference instancu
 						//PROVERA ZA OLD
 						if(oldVersion.HasAttributes)
 						{

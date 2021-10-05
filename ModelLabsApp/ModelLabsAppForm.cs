@@ -98,7 +98,7 @@ namespace ModelLabsApp
             {
                 try
                 {
-                    string log = adapter.ApplyUpdates(nmsDelta);
+                    string log = adapter.ApplyUpdates(nmsDelta, textBoxCIMFile.Text);
                     richTextBoxReport.AppendText(log);
                     nmsDelta = null;
                     buttonApplyDelta.Enabled = (nmsDelta != null);

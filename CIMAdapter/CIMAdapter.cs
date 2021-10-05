@@ -5,6 +5,7 @@ using System.Threading;
 using CIM.Model;
 using CIMParser;
 using FTN.Common;
+using FTN.ESI.SIMES.CIM.CIMAdapter.DBHelper;
 using FTN.ESI.SIMES.CIM.CIMAdapter.Importer;
 using FTN.ESI.SIMES.CIM.CIMAdapter.Manager;
 using FTN.ServiceContracts;
@@ -53,7 +54,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 			return nmsDelta;
 		}
 
-		public string ApplyUpdates(Delta delta)
+		public string ApplyUpdates(Delta delta, string fileName)
 		{
 			string updateResult = "Apply Updates Report:\r\n";
 			System.Globalization.CultureInfo culture = Thread.CurrentThread.CurrentCulture;
@@ -63,10 +64,33 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 			{
 				//// NetworkModelService->ApplyUpdates
                 updateResult = GdaQueryProxy.ApplyUpdate(delta).ToString();
+				SaveDeltaToDb(delta, fileName);
 			}
 
 			Thread.CurrentThread.CurrentCulture = culture;
 			return updateResult;
+		}
+
+		private void SaveDeltaToDb(Delta delta, string fileName)
+		{
+			string[] temps = fileName.Split('\\');
+			fileName = temps[temps.Length - 1];
+
+			using (var db = new DeltaDBContext())
+			{
+				foreach (ResourceDescription rd in delta.InsertOperations)
+				{
+					db.Delta.Add(new DeltaQuerry(
+						rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue,
+						DeltaOpType.Insert,
+						fileName
+						));
+				}
+
+				db.SaveChanges();
+			}
+
+
 		}
 
 
