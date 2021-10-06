@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using CIM.Model;
@@ -37,7 +38,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
             }
         }
 
-		public Delta CreateDelta(Stream extract, SupportedProfiles extractType, out string log)
+		public Delta CreateDelta(Stream extract, SupportedProfiles extractType, out string log, string fileName)
 		{
 			Delta nmsDelta = null;
 			ConcreteModel concreteModel = null;
@@ -47,7 +48,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 
 			if (LoadModelFromExtractFile(extract, extractType, ref concreteModel, ref assembly, out loadLog))
 			{
-				DoTransformAndLoad(assembly, concreteModel, extractType, out nmsDelta, out transformLog);
+				DoTransformAndLoad(assembly, concreteModel, extractType, out nmsDelta, out transformLog, fileName);
 			}
 			log = string.Concat("Load report:\r\n", loadLog, "\r\nTransform report:\r\n", transformLog);
 
@@ -73,24 +74,23 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 
 		private void SaveDeltaToDb(Delta delta, string fileName)
 		{
-			string[] temps = fileName.Split('\\');
-			fileName = temps[temps.Length - 1];
-
 			using (var db = new DeltaDBContext())
 			{
+
+				foreach(ResourceDescription rd in delta.DeleteOperations)
+                {
+					string mrid = rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue;
+					var toRemove = db.Delta.Where(x => x.FileName == fileName && x.mrid == mrid);
+					db.Delta.RemoveRange(toRemove);
+                }
+
 				foreach (ResourceDescription rd in delta.InsertOperations)
 				{
-					db.Delta.Add(new DeltaQuerry(
-						rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue,
-						DeltaOpType.Insert,
-						fileName
-						));
+					string mrid = rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue;
+					db.Delta.Add(new DeltaQuerry(mrid, fileName, rd.Id));
 				}
-
 				db.SaveChanges();
 			}
-
-
 		}
 
 
@@ -137,7 +137,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 			return valid;
 		}
 
-		private bool DoTransformAndLoad(Assembly assembly, ConcreteModel concreteModel, SupportedProfiles extractType, out Delta nmsDelta, out string log)
+		private bool DoTransformAndLoad(Assembly assembly, ConcreteModel concreteModel, SupportedProfiles extractType, out Delta nmsDelta, out string log, string fileName)
 		{
 			nmsDelta = null;
 			log = string.Empty;
@@ -151,7 +151,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 					case SupportedProfiles.PowerTransformer:
 						{
 							// transformation to DMS delta					
-							TransformAndLoadReport report = PowerTransformerImporter.Instance.CreateNMSDelta(concreteModel);
+							TransformAndLoadReport report = PowerTransformerImporter.Instance.CreateNMSDelta(concreteModel, fileName, GdaQueryProxy);
 
 							if (report.Success)
 							{

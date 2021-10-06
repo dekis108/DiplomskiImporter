@@ -68,7 +68,10 @@ namespace ModelLabsApp
 				nmsDelta = null;
 				using (FileStream fs = File.Open(textBoxCIMFile.Text, FileMode.Open))
 				{
-					nmsDelta = adapter.CreateDelta(fs, (SupportedProfiles)(comboBoxProfile.SelectedItem), out log);
+					string[] temps = textBoxCIMFile.Text.Split('\\');
+					string fileName = temps[temps.Length - 1];
+
+					nmsDelta = adapter.CreateDelta(fs, (SupportedProfiles)(comboBoxProfile.SelectedItem), out log, fileName);
 					richTextBoxReport.Text = log;
 				}
 				if (nmsDelta != null)
@@ -88,7 +91,7 @@ namespace ModelLabsApp
 			}
 
 			buttonApplyDelta.Enabled = (nmsDelta != null);
-            textBoxCIMFile.Text = string.Empty;
+            //textBoxCIMFile.Text = string.Empty;
 		}
 
 		private void ApplyDMSNetworkModelDelta()
@@ -98,7 +101,10 @@ namespace ModelLabsApp
             {
                 try
                 {
-                    string log = adapter.ApplyUpdates(nmsDelta, textBoxCIMFile.Text);
+					string[] temps = textBoxCIMFile.Text.Split('\\');
+					string fileName = temps[temps.Length - 1];
+
+					string log = adapter.ApplyUpdates(nmsDelta, fileName);
                     richTextBoxReport.AppendText(log);
                     nmsDelta = null;
                     buttonApplyDelta.Enabled = (nmsDelta != null);

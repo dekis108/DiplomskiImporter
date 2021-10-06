@@ -458,6 +458,7 @@ namespace FTN.Common
 					}
 				}
 			}
+			
 
 			// change ids in delete operations
 			foreach (ResourceDescription rd in deleteOps)
@@ -480,7 +481,6 @@ namespace FTN.Common
 					}
 				}
 			}
-
 			message = String.Format("Fixing negative to positive IDs for delta with ID = {0} completed successfully.", GetCompositeId(id));
 			CommonTrace.WriteTrace(CommonTrace.TraceVerbose, message);
 		}

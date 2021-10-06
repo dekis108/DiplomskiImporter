@@ -11,6 +11,12 @@ namespace FTN.ServiceContracts
 	[ServiceContract]
 	public interface INetworkModelGDAContract
 	{
+
+
+		[OperationContract]
+		long GetServerwiseGlobalId(string mrid, DMSType entityDmsType);
+
+
 		/// <summary>
 		/// Updates model by appluing reosoreces sent in delta
 		/// </summary>		
@@ -87,5 +93,7 @@ namespace FTN.ServiceContracts
 		/// <returns>TRUE if iterator is successfully closed</returns>
 		[OperationContract]		
 		bool IteratorClose(int id);
+
+
 	}
 }

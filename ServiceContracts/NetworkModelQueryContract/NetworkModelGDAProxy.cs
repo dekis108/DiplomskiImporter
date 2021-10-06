@@ -56,5 +56,11 @@ namespace FTN.ServiceContracts
 		{
 			return Channel.IteratorRewind(id);
 		}
-	}
+
+		public long GetServerwiseGlobalId(string mrid, DMSType type)
+		{
+			return Channel.GetServerwiseGlobalId(mrid, type);
+
+		}
+    }
 }

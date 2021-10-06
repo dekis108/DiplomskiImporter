@@ -16,15 +16,19 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.DBHelper
         [Key, Column(Order = 0)]
         public string mrid { get; set; }
         [Key, Column(Order = 1)]
-        public DeltaOpType OperationType { get; set; }
-        [Key, Column(Order = 2)]
         public string FileName { get; set; }
 
-        public DeltaQuerry(string id, DeltaOpType opType, string fileName)
+        public long ResourceId { get; set; }
+
+        public DeltaQuerry(string id, string fileName, long rid)
         {
             mrid = id;
-            OperationType = opType;
             FileName = fileName;
+            ResourceId = rid;
+        }
+        public DeltaQuerry()
+        {
+
         }
     }
 }

@@ -4,7 +4,8 @@ using CIM.Model;
 using FTN.Common;
 using FTN.ESI.SIMES.CIM.CIMAdapter.DBHelper;
 using FTN.ESI.SIMES.CIM.CIMAdapter.Manager;
-
+using System.Linq;
+using FTN.ServiceContracts;
 
 namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 {
@@ -21,6 +22,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 		private Delta delta;
 		private ImportHelper importHelper;
 		private TransformAndLoadReport report;
+		private NetworkModelGDAProxy GdaQueryProxy;
 
 
 		#region Properties
@@ -61,7 +63,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			report = null;
 		}
 
-		public TransformAndLoadReport CreateNMSDelta(ConcreteModel cimConcreteModel)
+		public TransformAndLoadReport CreateNMSDelta(ConcreteModel cimConcreteModel, string fileName, ServiceContracts.NetworkModelGDAProxy gdaQueryProxy)
 		{
 			LogManager.Log("Importing PowerTransformer Elements...", LogLevel.Info);
 			report = new TransformAndLoadReport();
@@ -73,7 +75,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 				try
 				{
 					// convert into DMS elements
-					ConvertModelAndPopulateDelta();
+					ConvertModelAndPopulateDelta(fileName, gdaQueryProxy);
 				}
 				catch (Exception ex)
 				{
@@ -90,7 +92,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
         /// <summary>
         /// Method performs conversion of network elements from CIM based concrete model into DMS model.
         /// </summary>
-        private void ConvertModelAndPopulateDelta()
+        private void ConvertModelAndPopulateDelta(string fileName, ServiceContracts.NetworkModelGDAProxy gdaQueryProxy)
 		{
 			LogManager.Log("Loading elements and creating delta...", LogLevel.Info);
 
@@ -104,11 +106,14 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			*/
 
 			//TODO: promeniti ove importe da na deltu dodaju korektnu operaciju(update, delete)
-			ImportACLineSegment();
-			ImportACLineSegmentPhase();
-			ImportTerminal();
-			ImportMutualCoupling();
-			
+			GdaQueryProxy = gdaQueryProxy;
+			ImportACLineSegment(fileName);
+			ImportACLineSegmentPhase(fileName);
+			ImportTerminal(fileName);
+			ImportMutualCoupling(fileName);
+			AssignDeleteDeltaOperation(fileName);
+
+
 
 
 			LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
@@ -116,7 +121,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 
 
-		private void ImportACLineSegment()
+		private void ImportACLineSegment(string fileName)
 		{
 			SortedDictionary<string, object> cimACLineSegments = concreteModel.GetAllObjectsOfType("FTN.ACLineSegment");
 			if (cimACLineSegments != null)
@@ -124,12 +129,11 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 				foreach (KeyValuePair<string, object> cimClassPair in cimACLineSegments)
 				{
 					FTN.ACLineSegment cimTerminal = cimClassPair.Value as FTN.ACLineSegment;
-
 					ResourceDescription rd = CreateACLineSegmentResourceDescription(cimTerminal);
 					if (rd != null)
 					{
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
-						report.Report.Append("ACLineSegment ID = ").Append(cimTerminal.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
+                        AssignInsertOrUpdateDeltaOperation(rd, fileName, ModelCode.ACLINESEGMENT);
+                        report.Report.Append("ACLineSegment ID = ").Append(cimTerminal.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
 					}
 					else
 					{
@@ -140,7 +144,58 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			}
 		}
 
-		private ResourceDescription CreateACLineSegmentResourceDescription(FTN.ACLineSegment cim)
+		private void AssignDeleteDeltaOperation(string fileName)
+        {
+			using (var db = new DeltaDBContext())
+            {
+				List<DeltaQuerry> entities = db.Delta.Where(x => x.FileName == fileName).ToList();
+
+				foreach(var entity in entities)
+                {
+					var inInsert = delta.InsertOperations.FindIndex(x => x.Properties.Find(y => y.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue == entity.mrid);
+					var inUpdate = delta.UpdateOperations.FindIndex(x => x.Properties.Find(y => y.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue == entity.mrid);
+
+					if (inInsert < 0 && inUpdate < 0)
+                    {
+						long globalId = GdaQueryProxy.GetServerwiseGlobalId(entity.mrid, (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(entity.ResourceId));
+						List<Property> props = new List<Property>()
+						{
+							new Property(ModelCode.IDOBJ_MRID, entity.mrid)
+						};
+						ResourceDescription rd = new ResourceDescription(globalId, props);
+						delta.AddDeltaOperation(DeltaOpType.Delete, rd, true);
+                    }
+				}
+			}
+		}
+
+        private void AssignInsertOrUpdateDeltaOperation(ResourceDescription rd, string fileName, ModelCode modelType)
+        {
+			using (var db = new DeltaDBContext())
+			{
+				if (db.Delta.Any(x => x.FileName == fileName))
+				{
+					string mrid = rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue;
+
+					if (db.Delta.Any(x => x.FileName == fileName && x.mrid == mrid))
+					{
+						long globalId = GdaQueryProxy.GetServerwiseGlobalId(mrid, ModelCodeHelper.GetTypeFromModelCode(modelType));
+						rd.Id = globalId;
+						delta.AddDeltaOperation(DeltaOpType.Update, rd, true);
+					}
+					else
+                    {
+						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+					}
+				}
+				else
+				{
+					delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+				}
+			}
+		}
+
+        private ResourceDescription CreateACLineSegmentResourceDescription(FTN.ACLineSegment cim)
 		{
 			ResourceDescription rd = null;
 			if (cim != null)
@@ -157,7 +212,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 		}
 
 
-		private void ImportACLineSegmentPhase()
+		private void ImportACLineSegmentPhase(string fileName)
 		{
 			SortedDictionary<string, object> cimClass = concreteModel.GetAllObjectsOfType("FTN.ACLineSegmentPhase");
 			if (cimClass != null)
@@ -169,7 +224,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 					ResourceDescription rd = CreateACLineSegmentPhaseResourceDescription(cimTerminal);
 					if (rd != null)
 					{
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+						AssignInsertOrUpdateDeltaOperation(rd, fileName, ModelCode.ACLINESEGMENTPHASE);
 						report.Report.Append("ACLineSegmentPhase ID = ").Append(cimTerminal.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
 					}
 					else
@@ -198,7 +253,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 		}
 
-		private void ImportTerminal()
+		private void ImportTerminal(string fileName)
 		{
 			SortedDictionary<string, object> cimTerminals = concreteModel.GetAllObjectsOfType("FTN.Terminal");
 			if (cimTerminals != null)
@@ -210,7 +265,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 					ResourceDescription rd = CreateTerminalResourceDescription(cimTerminal);
 					if (rd != null)
 					{
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+						AssignInsertOrUpdateDeltaOperation(rd, fileName, ModelCode.TERMINAL);
 						report.Report.Append("Terminal ID = ").Append(cimTerminal.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
 					}
 					else
@@ -239,7 +294,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			return rd;
 		}
 
-		private void ImportMutualCoupling()
+		private void ImportMutualCoupling(string fileName)
 		{
 			SortedDictionary<string, object> cimClass = concreteModel.GetAllObjectsOfType("FTN.MutualCoupling");
 			if (cimClass != null)
@@ -251,7 +306,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 					ResourceDescription rd = CreateMutualCouplingResourceDescription(cimTerminal);
 					if (rd != null)
 					{
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+						AssignInsertOrUpdateDeltaOperation(rd, fileName, ModelCode.MUTUALCOUPLING);
 						report.Report.Append("MutualCoupling ID = ").Append(cimTerminal.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
 					}
 					else
