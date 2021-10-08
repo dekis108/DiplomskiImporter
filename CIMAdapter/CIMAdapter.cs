@@ -65,7 +65,10 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 			{
 				//// NetworkModelService->ApplyUpdates
                 updateResult = GdaQueryProxy.ApplyUpdate(delta).ToString();
-				SaveDeltaToDb(delta, fileName);
+				if (updateResult.Contains("Update result: Succeeded"))
+                {
+					SaveDeltaToDb(delta, fileName);
+				}
 			}
 
 			Thread.CurrentThread.CurrentCulture = culture;

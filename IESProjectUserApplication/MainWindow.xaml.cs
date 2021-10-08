@@ -267,9 +267,17 @@ namespace IESProjectUserApplication
 
         private void comboBoxModelSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            listBoxPropertiesExtent.UnselectAll();
+
+            if (comboBoxModelSelect.SelectedItem == null)
+            {
+                listBoxPropertiesExtent.ItemsSource = null;
+                return;
+            }
+
             ModelResourcesDesc modelResources = new ModelResourcesDesc();
             listBoxPropertiesExtent.ItemsSource = modelResources.GetAllPropertyIds((ModelCode)comboBoxModelSelect.SelectedItem);
-            listBoxPropertiesExtent.UnselectAll();
+
         }
 
         private void listBoxProperties_Initialized(object sender, EventArgs e)
@@ -280,11 +288,17 @@ namespace IESProjectUserApplication
 
         private void comboBoxIdSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            listBoxProperties.UnselectAll();
+            if (comboBoxIdSelect.SelectedItem == null)
+            {
+                comboBoxIdSelect.ItemsSource = null;
+                return;
+            }
             ModelResourcesDesc modelResources = new ModelResourcesDesc();
             ModelCode type = modelResources.GetModelCodeFromId((long)comboBoxIdSelect.SelectedItem);
 
             listBoxProperties.ItemsSource = modelResources.GetAllPropertyIds(type);
-            listBoxProperties.UnselectAll();
+
         }
 
         private void listBoxPropertiesRelated_Initialized(object sender, EventArgs e)
@@ -317,6 +331,12 @@ namespace IESProjectUserApplication
 
         private void comboBoxSelectAssFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (comboBoxSelectAssFilter.SelectedItem == null) {
+                listBoxPropertiesRelated.UnselectAll();
+                listBoxPropertiesRelated.ItemsSource = null;
+                return;
+            }
+
             List<ModelCode> props = new List<ModelCode>();
 
             ModelResourcesDesc modelResources = new ModelResourcesDesc();

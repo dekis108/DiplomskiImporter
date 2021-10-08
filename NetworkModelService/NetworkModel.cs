@@ -799,7 +799,7 @@ namespace FTN.Services.NetworkModelService
 				throw new Exception($"Container for entity type with DmsType {entityDmsType} not found!");
 			}
 
-			throw new NotImplementedException();
+			throw new Exception($"Entity with mrid {mrid} not found on service.");
 		}
 
 	}
