@@ -112,6 +112,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			ImportTerminal(fileName);
 			ImportMutualCoupling(fileName);
 			AssignDeleteDeltaOperation(fileName);
+			FixReferenceIdsToUpdatedEntities();
 
 
 
@@ -119,9 +120,39 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
 		}
 
+        private void FixReferenceIdsToUpdatedEntities()
+        {
+            foreach(ResourceDescription entity in delta.InsertOperations)
+            {
+				FixReferenceId(entity);
+			}
 
+			foreach (ResourceDescription entity in delta.UpdateOperations)
+			{
+				FixReferenceId(entity);
+			}
+		}
 
-		private void ImportACLineSegment(string fileName)
+        private void FixReferenceId(ResourceDescription entity)
+        {
+            foreach(Property prop in entity.Properties)
+            {
+				if (prop.Type == PropertyType.Reference)
+                {
+					using (var db = new DeltaDBContext())
+                    {
+						DeltaQuerry querry = db.Delta.FirstOrDefault(x => x.ResourceId == prop.PropertyValue.LongValue);
+						if (querry != null) //deja: vec postoji u bazi, zameni PropertyValue sa server wide GID
+						{
+							long globalId = GdaQueryProxy.GetServerwiseGlobalId(querry.mrid, (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(querry.ResourceId));
+							prop.PropertyValue.LongValue = globalId;
+						}
+                    }
+                }
+            }
+        }
+
+        private void ImportACLineSegment(string fileName)
 		{
 			SortedDictionary<string, object> cimACLineSegments = concreteModel.GetAllObjectsOfType("FTN.ACLineSegment");
 			if (cimACLineSegments != null)

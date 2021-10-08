@@ -1,5 +1,21 @@
 ﻿<delta id="0">
   <operations>
+    <operation type="insert">
+      <ResourceDescriptions count="1">
+        <ResourceDescription>
+          <id gid="0x00000001ffffffff" type="TERMINAL" />
+          <Properties>
+            <Property id="IDOBJ_MRID" value="T2" />
+            <Property id="IDOBJ_NAME" value="T2" />
+            <Property id="IDOBJ_ALIASNAME" value="Terminal2" />
+            <Property id="TERMINAL_CONNECTED" value="1" />
+            <Property id="TERMINAL_PHASE" value="C" />
+            <Property id="TERMINAL_SQCNUM" value="13" />
+            <Property id="TERMINAL_CONDQEQ" value="0x0000000300000001" />
+          </Properties>
+        </ResourceDescription>
+      </ResourceDescriptions>
+    </operation>
     <operation type="update">
       <ResourceDescriptions count="1">
         <ResourceDescription>
