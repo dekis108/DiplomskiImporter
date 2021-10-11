@@ -90,7 +90,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 				foreach (ResourceDescription rd in delta.InsertOperations)
 				{
 					string mrid = rd.Properties.Find(x => x.Id == ModelCode.IDOBJ_MRID).PropertyValue.StringValue;
-					db.Delta.Add(new DeltaQuerry(mrid, fileName, rd.Id));
+					db.Delta.Add(new DeltaQuerry(mrid, fileName));
 				}
 				db.SaveChanges();
 			}

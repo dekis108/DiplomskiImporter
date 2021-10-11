@@ -111,6 +111,10 @@
     <Compile Include="Migrations\202110060911016_resourceId.designer.cs">
       <DependentUpon>202110060911016_resourceId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110110820317_removedRID.cs" />
+    <Compile Include="Migrations\202110110820317_removedRID.designer.cs">
+      <DependentUpon>202110110820317_removedRID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformAndLoadReport.cs" />
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110060911016_resourceId.resx">
       <DependentUpon>202110060911016_resourceId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110110820317_removedRID.resx">
+      <DependentUpon>202110110820317_removedRID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

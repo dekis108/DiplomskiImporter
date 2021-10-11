@@ -8,32 +8,24 @@
 		<cim:IdentifiedObject.mRID>AC1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>ACLine</cim:IdentifiedObject.name>
 		<cim:IdentifiedObject.aliasName>ACLine1</cim:IdentifiedObject.aliasName>
-		<cim:ACLineSegment.b0ch>0.1</cim:ACLineSegment.b0ch>
-		<cim:ACLineSegment.bch>0.2</cim:ACLineSegment.bch>
-		<cim:ACLineSegment.g0ch>0.3</cim:ACLineSegment.g0ch>
-		<cim:ACLineSegment.gch>0.4</cim:ACLineSegment.gch>
-		<cim:ACLineSegment.r>0.5</cim:ACLineSegment.r>
-		<cim:ACLineSegment.r0>0.6</cim:ACLineSegment.r0>
-		<cim:ACLineSegment.x>0.7</cim:ACLineSegment.x>
-		<cim:ACLineSegment.x0>0.8</cim:ACLineSegment.x0>
+		<cim:ACLineSegment.b0ch>0.2</cim:ACLineSegment.b0ch>
+		<cim:ACLineSegment.bch>0.3</cim:ACLineSegment.bch>
+		<cim:ACLineSegment.g0ch>0.4</cim:ACLineSegment.g0ch>
+		<cim:ACLineSegment.gch>0.5</cim:ACLineSegment.gch>
+		<cim:ACLineSegment.r>0.6</cim:ACLineSegment.r>
+		<cim:ACLineSegment.r0>0.7</cim:ACLineSegment.r0>
+		<cim:ACLineSegment.x>0.8</cim:ACLineSegment.x>
+		<cim:ACLineSegment.x0>0.9</cim:ACLineSegment.x0>
 	</cim:ACLineSegment>
-
-	<!-- ACLineSegmentPhase -->
-	<cim:ACLineSegmentPhase rdf:ID="ACLSP_637494416619123964">
-		<cim:IdentifiedObject.mRID>ACSPhase1</cim:IdentifiedObject.mRID>
-		<cim:IdentifiedObject.name>ACSPhase1</cim:IdentifiedObject.name>
-		<cim:IdentifiedObject.aliasName>ACSPhase1</cim:IdentifiedObject.aliasName>
-		<cim:ACLineSegmentPhase.phase>SinglePhaseKind.A</cim:ACLineSegmentPhase.phase>
-		<cim:ACLineSegmentPhase.ACLineSegment rdf:resource="#ACLS_133769420"/>
-	</cim:ACLineSegmentPhase>
-		<cim:ACLineSegmentPhase rdf:ID="ACLSP_637494416619123965">
-		<cim:IdentifiedObject.mRID>ACSPhase2</cim:IdentifiedObject.mRID>
-		<cim:IdentifiedObject.name>ACSPhase2</cim:IdentifiedObject.name>
-		<cim:IdentifiedObject.aliasName>ACSPhase2</cim:IdentifiedObject.aliasName>
-		<cim:ACLineSegmentPhase.phase>SinglePhaseKind.B</cim:ACLineSegmentPhase.phase>
-		<cim:ACLineSegmentPhase.ACLineSegment rdf:resource="#ACLS_133769420"/>
-	</cim:ACLineSegmentPhase>
-	<!-- Terminal -->
+	<cim:Terminal rdf:ID="T_2223">
+		<cim:IdentifiedObject.mRID>T2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>T2</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.aliasName>Terminal2</cim:IdentifiedObject.aliasName>
+		<cim:Terminal.connected>true</cim:Terminal.connected>
+		<cim:Terminal.phases>PhaseCode.ABC</cim:Terminal.phases>
+		<cim:Terminal.sequenceNumber>13</cim:Terminal.sequenceNumber>
+		<cim:Terminal.ConductingEquipment rdf:resource="#ACLS_133769420"/>
+	</cim:Terminal>
 	<cim:Terminal rdf:ID="T_1101">
 		<cim:IdentifiedObject.mRID>T1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>T1</cim:IdentifiedObject.name>

@@ -18,6 +18,9 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 		private static PowerTransformerImporter ptImporter = null;
 		private static object singletoneLock = new object();
 
+
+		private Dictionary<long, long> ClientToServerGID;
+
 		private ConcreteModel concreteModel;
 		private Delta delta;
 		private ImportHelper importHelper;
@@ -107,6 +110,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 			//TODO: promeniti ove importe da na deltu dodaju korektnu operaciju(update, delete)
 			GdaQueryProxy = gdaQueryProxy;
+			ClientToServerGID = new Dictionary<long, long>();
 			ImportACLineSegment(fileName);
 			ImportACLineSegmentPhase(fileName);
 			ImportTerminal(fileName);
@@ -139,15 +143,11 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
             {
 				if (prop.Type == PropertyType.Reference)
                 {
-					using (var db = new DeltaDBContext())
+					if (ClientToServerGID.ContainsKey(prop.PropertyValue.LongValue))
                     {
-						DeltaQuerry querry = db.Delta.FirstOrDefault(x => x.ResourceId == prop.PropertyValue.LongValue);
-						if (querry != null) //deja: vec postoji u bazi, zameni PropertyValue sa server wide GID
-						{
-							long globalId = GdaQueryProxy.GetServerwiseGlobalId(querry.mrid);
-							prop.PropertyValue.LongValue = globalId;
-						}
-                    }
+						long gid = ClientToServerGID[prop.PropertyValue.LongValue];
+						prop.PropertyValue.LongValue = gid;
+					}
                 }
             }
         }
@@ -211,17 +211,18 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 					if (db.Delta.Any(x => x.FileName == fileName && x.mrid == mrid))
 					{
 						long globalId = GdaQueryProxy.GetServerwiseGlobalId(mrid);
+						ClientToServerGID.Add(rd.Id, globalId);
 						rd.Id = globalId;
 						delta.AddDeltaOperation(DeltaOpType.Update, rd, true);
 					}
 					else
                     {
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, false);
+						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
 					}
 				}
 				else
 				{
-					delta.AddDeltaOperation(DeltaOpType.Insert, rd, false);
+					delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
 				}
 			}
 		}

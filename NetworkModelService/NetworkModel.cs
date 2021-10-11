@@ -777,5 +777,11 @@ namespace FTN.Services.NetworkModelService
 			return -1;
 		}
 
+
+		public long GetServerwiseGlobalId(long gid)
+		{
+			return Delta.GetDeltaGID(gid);
+		}
+
 	}
 }

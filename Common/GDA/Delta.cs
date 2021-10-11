@@ -485,6 +485,16 @@ namespace FTN.Common
 			CommonTrace.WriteTrace(CommonTrace.TraceVerbose, message);
 		}
 
+
+
+		public static long GetDeltaGID(long gidOld)
+		{
+			int idNew = 0;
+
+			long gidNew = ChangeEntityIdInGlobalId(gidOld, idNew);
+			return IncorporateSystemIdToValue(gidNew, 0);
+		}
+
 		public void SortOperations()
 		{
 			string message = String.Format("Sorting delta operations for delta with ID = {0}.", GetCompositeId(id));
@@ -743,7 +753,7 @@ namespace FTN.Common
 			return String.Format("{0}{1}.{2}", valueWithSystemId < 0 ? "-" : "", systemId, valueWithoutSystemId);
 		}
 
-		private long IncorporateSystemIdToValue(long valueWithoutSystemId, short systemId)
+		private static long IncorporateSystemIdToValue(long valueWithoutSystemId, short systemId)
 		{
 			unchecked
 			{
@@ -759,7 +769,7 @@ namespace FTN.Common
 			}
 		}
 
-		public long ChangeEntityIdInGlobalId(long gidOld, int idNew)
+		public static long ChangeEntityIdInGlobalId(long gidOld, int idNew)
 		{
 			unchecked
 			{
