@@ -241,7 +241,7 @@ namespace FTN.Services.NetworkModelService
 				Dictionary<long, long> globalIdPairs = new Dictionary<long, long>();
 				delta.FixNegativeToPositiveIds(ref typesCounters, ref globalIdPairs);
 				updateResult.GlobalIdPairs = globalIdPairs;
-				delta.SortOperations(); //OVAJ JE BIO KRIV, bug je bio u InitializeTypeIdsInInsertOrder
+				delta.SortOperations();
 
 				applyingStarted = true;
 
@@ -258,7 +258,7 @@ namespace FTN.Services.NetworkModelService
 				foreach (ResourceDescription rd in delta.DeleteOperations)
 				{
 					DeleteEntity(rd);
-				}				 				
+				}
 
 			}
 			catch (Exception ex)
@@ -761,45 +761,20 @@ namespace FTN.Services.NetworkModelService
 			return typesCounters;
 		}
 
-		public long GetServerwiseGlobalId(string mrid, DMSType entityDmsType)
+		public long GetServerwiseGlobalId(string mrid)
 		{
-
-			//DMSType type = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(clientGlobalId);
-
-			if (ContainerExists(entityDmsType))
-			{
-				Container container = GetContainer(entityDmsType);
+			foreach(Container container in networkDataModel.Values)
+			{ 	
 				var globalIds = container.GetEntitiesGlobalIds();
-				Console.WriteLine("evo");
 				foreach (var id in globalIds)
-                {
+				{
 					if (container.Entities[id].Mrid == mrid)
-                    {
+					{
 						return id;
-                    }
-                }
-				//12884901889
-				//return 12884901889; //
-				//class2PropertyIDs.Add(entityDmsType, properties);
+					}
+				}
 			}
-			/*
-			if (ContainerExists(type))
-			{
-				Container container = GetContainer(type);
-
-				var temp =  container.Entities.FirstOrDefault(x => x.Value.Mrid == mrid).Key;
-				var evo = container.GetEntitiesGlobalIds();
-				Console.WriteLine("evo");
-				return temp;
-
-			}
-			*/
-			else
-			{
-				throw new Exception($"Container for entity type with DmsType {entityDmsType} not found!");
-			}
-
-			throw new Exception($"Entity with mrid {mrid} not found on service.");
+			return -1;
 		}
 
 	}

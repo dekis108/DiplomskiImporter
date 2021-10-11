@@ -14,7 +14,7 @@ namespace FTN.ServiceContracts
 
 
 		[OperationContract]
-		long GetServerwiseGlobalId(string mrid, DMSType entityDmsType);
+		long GetServerwiseGlobalId(string mrid);
 
 
 		/// <summary>

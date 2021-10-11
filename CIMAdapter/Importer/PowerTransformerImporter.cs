@@ -144,7 +144,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 						DeltaQuerry querry = db.Delta.FirstOrDefault(x => x.ResourceId == prop.PropertyValue.LongValue);
 						if (querry != null) //deja: vec postoji u bazi, zameni PropertyValue sa server wide GID
 						{
-							long globalId = GdaQueryProxy.GetServerwiseGlobalId(querry.mrid, (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(querry.ResourceId));
+							long globalId = GdaQueryProxy.GetServerwiseGlobalId(querry.mrid);
 							prop.PropertyValue.LongValue = globalId;
 						}
                     }
@@ -188,7 +188,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 					if (inInsert < 0 && inUpdate < 0)
                     {
-						long globalId = GdaQueryProxy.GetServerwiseGlobalId(entity.mrid, (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(entity.ResourceId));
+						long globalId = GdaQueryProxy.GetServerwiseGlobalId(entity.mrid);
 						List<Property> props = new List<Property>()
 						{
 							new Property(ModelCode.IDOBJ_MRID, entity.mrid)
@@ -210,18 +210,18 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
 					if (db.Delta.Any(x => x.FileName == fileName && x.mrid == mrid))
 					{
-						long globalId = GdaQueryProxy.GetServerwiseGlobalId(mrid, ModelCodeHelper.GetTypeFromModelCode(modelType));
+						long globalId = GdaQueryProxy.GetServerwiseGlobalId(mrid);
 						rd.Id = globalId;
 						delta.AddDeltaOperation(DeltaOpType.Update, rd, true);
 					}
 					else
                     {
-						delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+						delta.AddDeltaOperation(DeltaOpType.Insert, rd, false);
 					}
 				}
 				else
 				{
-					delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
+					delta.AddDeltaOperation(DeltaOpType.Insert, rd, false);
 				}
 			}
 		}

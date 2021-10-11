@@ -196,9 +196,9 @@ namespace FTN.Services.NetworkModelService
 			}
 		}
 
-		public long GetServerwiseGlobalId(string mrid, DMSType entityDmsType)
+		public long GetServerwiseGlobalId(string mrid)
 		{
-			return nm.GetServerwiseGlobalId(mrid, entityDmsType);
+			return nm.GetServerwiseGlobalId(mrid);
 		}
 	}
 }

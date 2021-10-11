@@ -34,7 +34,7 @@
 		<cim:ACLineSegmentPhase.ACLineSegment rdf:resource="#ACLS_133769420"/>
 	</cim:ACLineSegmentPhase>
 	<!-- Terminal -->
-	<cim:Terminal rdf:ID="T_637497850442793700">
+	<cim:Terminal rdf:ID="T_1101">
 		<cim:IdentifiedObject.mRID>T1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>T1</cim:IdentifiedObject.name>
 		<cim:IdentifiedObject.aliasName>Terminal1</cim:IdentifiedObject.aliasName>

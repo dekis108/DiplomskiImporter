@@ -17,7 +17,7 @@
 		<cim:ACLineSegment.x>0.8</cim:ACLineSegment.x>
 		<cim:ACLineSegment.x0>0.9</cim:ACLineSegment.x0>
 	</cim:ACLineSegment>
-	<cim:Terminal rdf:ID="T_637497850442793711">
+	<cim:Terminal rdf:ID="T_2223">
 		<cim:IdentifiedObject.mRID>T2</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>T2</cim:IdentifiedObject.name>
 		<cim:IdentifiedObject.aliasName>Terminal2</cim:IdentifiedObject.aliasName>
