@@ -1,49 +1,53 @@
 ﻿<delta id="0">
   <operations>
     <operation type="insert">
-      <ResourceDescriptions count="1">
+      <ResourceDescriptions count="4">
+        <ResourceDescription>
+          <id gid="0x00000003ffffffff" type="ACLINESEGMENT" />
+          <Properties>
+            <Property id="IDOBJ_MRID" value="AC1" />
+            <Property id="IDOBJ_NAME" value="ACLine" />
+            <Property id="IDOBJ_ALIASNAME" value="ACLine1" />
+            <Property id="ACLINESEGMENT_B0CH" value="0.1" />
+            <Property id="ACLINESEGMENT_G0CH" value="0" />
+            <Property id="ACLINESEGMENT_R0" value="0" />
+            <Property id="ACLINESEGMENT_X0" value="0.8" />
+            <Property id="ACLINESEGMENT_X" value="0.7" />
+            <Property id="ACLINESEGMENT_R" value="0" />
+            <Property id="ACLINESEGMENT_GCH" value="0" />
+            <Property id="ACLINESEGMENT_BCH" value="0" />
+          </Properties>
+        </ResourceDescription>
+        <ResourceDescription>
+          <id gid="0x00000002ffffffff" type="ACLINESEGMENTPHASE" />
+          <Properties>
+            <Property id="IDOBJ_MRID" value="ACSPhase1" />
+            <Property id="IDOBJ_NAME" value="ACSPhase1" />
+            <Property id="IDOBJ_ALIASNAME" value="ACSPhase1" />
+            <Property id="ACLINESEGMENTPHASE_PHASE" value="A" />
+            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003ffffffff" />
+          </Properties>
+        </ResourceDescription>
+        <ResourceDescription>
+          <id gid="0x00000002fffffffe" type="ACLINESEGMENTPHASE" />
+          <Properties>
+            <Property id="IDOBJ_MRID" value="ACSPhase2" />
+            <Property id="IDOBJ_NAME" value="NameNotAssigned" />
+            <Property id="IDOBJ_ALIASNAME" value="NameNotAssigned" />
+            <Property id="ACLINESEGMENTPHASE_PHASE" value="B" />
+            <Property id="ACLINESEGMENTPHASE_ACLINESEGMENT" value="0x00000003ffffffff" />
+          </Properties>
+        </ResourceDescription>
         <ResourceDescription>
           <id gid="0x00000001ffffffff" type="TERMINAL" />
           <Properties>
             <Property id="IDOBJ_MRID" value="T1" />
             <Property id="IDOBJ_NAME" value="T1" />
             <Property id="IDOBJ_ALIASNAME" value="Terminal1" />
-            <Property id="TERMINAL_CONNECTED" value="1" />
+            <Property id="TERMINAL_CONNECTED" value="0" />
             <Property id="TERMINAL_PHASE" value="C" />
-            <Property id="TERMINAL_SQCNUM" value="13" />
-            <Property id="TERMINAL_CONDQEQ" value="0x0000000300000001" />
-          </Properties>
-        </ResourceDescription>
-      </ResourceDescriptions>
-    </operation>
-    <operation type="update">
-      <ResourceDescriptions count="2">
-        <ResourceDescription>
-          <id gid="0x0000000300000001" type="ACLINESEGMENT" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="AC1" />
-            <Property id="IDOBJ_NAME" value="ACLine" />
-            <Property id="IDOBJ_ALIASNAME" value="ACLine1" />
-            <Property id="ACLINESEGMENT_B0CH" value="0.2" />
-            <Property id="ACLINESEGMENT_G0CH" value="0.4" />
-            <Property id="ACLINESEGMENT_R0" value="0.7" />
-            <Property id="ACLINESEGMENT_X0" value="0.9" />
-            <Property id="ACLINESEGMENT_X" value="0.8" />
-            <Property id="ACLINESEGMENT_R" value="0.6" />
-            <Property id="ACLINESEGMENT_GCH" value="0.5" />
-            <Property id="ACLINESEGMENT_BCH" value="0.3" />
-          </Properties>
-        </ResourceDescription>
-        <ResourceDescription>
-          <id gid="0x0000000100000002" type="TERMINAL" />
-          <Properties>
-            <Property id="IDOBJ_MRID" value="T2" />
-            <Property id="IDOBJ_NAME" value="T2" />
-            <Property id="IDOBJ_ALIASNAME" value="Terminal2" />
-            <Property id="TERMINAL_CONNECTED" value="1" />
-            <Property id="TERMINAL_PHASE" value="C" />
-            <Property id="TERMINAL_SQCNUM" value="13" />
-            <Property id="TERMINAL_CONDQEQ" value="0x0000000300000001" />
+            <Property id="TERMINAL_SQCNUM" value="0" />
+            <Property id="TERMINAL_CONDQEQ" value="0x00000003ffffffff" />
           </Properties>
         </ResourceDescription>
       </ResourceDescriptions>

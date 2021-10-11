@@ -249,23 +249,43 @@
 				{
 					rd.AddProperty(new Property(ModelCode.IDOBJ_MRID, cim.MRID));
 				}
+				else if (IdentifiedObject.IsMRIDMandatory)
+                {
+					DefaultProperty(rd, ModelCode.IDOBJ_MRID);
+                }
+
 				if (cim.NameHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.IDOBJ_NAME, cim.Name));
 				}
+				else if (IdentifiedObject.IsNameMandatory)
+                {
+					DefaultProperty(rd, ModelCode.IDOBJ_NAME);
+				}
+
 				if (cim.AliasNameHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.IDOBJ_ALIASNAME, cim.AliasName));
 				}
+				else if (IdentifiedObject.IsAliasNameMandatory)
+				{
+					DefaultProperty(rd, ModelCode.IDOBJ_ALIASNAME);
+				}
+
+
 			}
 		}
 
-		public static void PopulatePowerSystemResourceProperties(PowerSystemResource cim, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+        private static void DefaultProperty(ResourceDescription rd, ModelCode modelCode)
+        {
+			Defaulter.PopulateDefaultProperty(rd, modelCode);
+        }
+
+        public static void PopulatePowerSystemResourceProperties(PowerSystemResource cim, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
         {
 			if ((cim != null) && (rd != null))
             {
 				PopulateIdentifiedObjectProperties(cim, rd, importHelper, report);
-
 			}
 
 		}
@@ -276,11 +296,15 @@
 			{
 				PopulatePowerSystemResourceProperties(cim, rd, importHelper, report);
 
-
 				if (cim.PhaseHasValue)
                 {
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENTPHASE_PHASE, (short)cim.Phase));
                 }
+				else if (ACLineSegmentPhase.IsPhaseMandatory)
+                {
+					DefaultProperty(rd, ModelCode.ACLINESEGMENTPHASE_PHASE);
+				}
+
 				if (cim.ACLineSegmentHasValue)
                 {
 					long gid = importHelper.GetMappedGID(cim.ACLineSegment.ID);
@@ -335,33 +359,72 @@
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_B0CH, cim.B0ch));
 				}
+				else if (ACLineSegment.IsB0chMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_B0CH);
+				}
+
 				if (cim.G0chHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_G0CH, cim.G0ch));
 				}
+				else if (ACLineSegment.IsG0chMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_G0CH);
+				}
+
 				if (cim.R0HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_R0, cim.R0));
 				}
+				else if (ACLineSegment.IsR0Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_R0);
+				}
+
 				if (cim.X0HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_X0, cim.X0));
 				}
+				else if (ACLineSegment.IsX0Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_X0);
+				}
+
 				if (cim.XHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_X, cim.X));
 				}
+				else if (ACLineSegment.IsXMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_X);
+				}
+
 				if (cim.RHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_R, cim.R));
 				}
+				else if (ACLineSegment.IsRMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_R);
+				}
+
 				if (cim.GchHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_GCH, cim.Gch));
 				}
+				else if (ACLineSegment.IsGchMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_GCH);
+				}
+
 				if (cim.BchHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.ACLINESEGMENT_BCH, cim.Bch));
+				}
+				else if (ACLineSegment.IsBchMandatory)
+				{
+					DefaultProperty(rd, ModelCode.ACLINESEGMENT_BCH);
 				}
 			}
 		}
@@ -376,34 +439,74 @@
                 {
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_B0CH, cim.B0ch));
 				}
+				else if (MutualCoupling.IsB0chMandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_B0CH);
+				}
+
 				if (cim.G0chHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_G0CH, cim.G0ch));
 				}
+				else if (MutualCoupling.IsG0chMandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_G0CH);
+				}
+
 				if (cim.R0HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_R0, cim.R0));
 				}
+				else if (MutualCoupling.IsR0Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_R0);
+				}
+
 				if (cim.X0HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_X0, cim.X0));
 				}
+				else if (MutualCoupling.IsX0Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_X0);
+				}
+
 				if (cim.Distance11HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_D11, cim.Distance11));
 				}
+				else if (MutualCoupling.IsDistance11Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_D11);
+				}
+
 				if (cim.Distance12HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_D12, cim.Distance12));
 				}
+				else if (MutualCoupling.IsDistance12Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_D12);
+				}
+
 				if (cim.Distance21HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_D21, cim.Distance21));
 				}
+				else if (MutualCoupling.IsDistance21Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_D21);
+				}
+
 				if (cim.Distance22HasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.MUTUALCOUPLING_D22, cim.Distance22));
 				}
+				else if (MutualCoupling.IsDistance22Mandatory)
+				{
+					DefaultProperty(rd, ModelCode.MUTUALCOUPLING_D22);
+				}
+
 				if (cim.First_TerminalHasValue)
 				{
 					long gid = importHelper.GetMappedGID(cim.First_Terminal.ID);
@@ -437,14 +540,29 @@
 				{
 					rd.AddProperty(new Property(ModelCode.TERMINAL_CONNECTED, cim.Connected));
 				}
+				else if (Terminal.IsConnectedMandatory)
+				{
+					DefaultProperty(rd, ModelCode.TERMINAL_CONNECTED);
+				}
+
 				if (cim.PhasesHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.TERMINAL_PHASE, (short)cim.Phases));
 				}
+				else if (Terminal.IsPhasesMandatory)
+				{
+					DefaultProperty(rd, ModelCode.TERMINAL_PHASE);
+				}
+
 				if (cim.SequenceNumberHasValue)
 				{
 					rd.AddProperty(new Property(ModelCode.TERMINAL_SQCNUM, cim.SequenceNumber));
 				}
+				else if (Terminal.IsSequenceNumberMandatory)
+				{
+					DefaultProperty(rd, ModelCode.TERMINAL_SQCNUM);
+				}
+
 				if (cim.ConductingEquipmentHasValue)
 				{
 					long gid = importHelper.GetMappedGID(cim.ConductingEquipment.ID);
